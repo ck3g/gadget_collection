@@ -1,10 +1,14 @@
 class GadgetsController < ApplicationController
   authorize_resource
 
-  before_action :find_gadget, only: [:edit, :update]
+  before_action :find_gadget, only: [:show, :edit, :update]
 
   def index
     @gadgets = current_user.gadgets.order(created_at: :desc)
+  end
+
+  def show
+
   end
 
   def new
