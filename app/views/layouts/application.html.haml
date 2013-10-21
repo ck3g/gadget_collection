@@ -6,6 +6,8 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
+    %div
+      = link_to 'Sign out', destroy_user_session_path
     .flashes
       - flash.each do |type, message|
         = message
