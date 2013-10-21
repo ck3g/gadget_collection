@@ -4,5 +4,9 @@ FactoryGirl.define do
   factory :gadget do
     sequence(:name) { |n| "Gadget ##{ n }" }
     user
+
+    factory :invalid_gadget do
+      name ""
+    end
   end
 end
