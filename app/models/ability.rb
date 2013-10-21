@@ -8,6 +8,7 @@ class Ability
       if user.persisted? # registered user
         can :create, Gadget
         can :index, Gadget
+        can :manage, Gadget, user_id: user.id
       end
     #
     # The first argument to `can` is the action you are giving the user 

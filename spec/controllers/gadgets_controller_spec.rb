@@ -3,6 +3,7 @@ require 'spec_helper'
 describe GadgetsController do
 
   let!(:user) { create :user_example_com}
+  let!(:iphone) { create :gadget, name: 'iPhone', user: user }
 
   before { sign_in user }
 
@@ -27,6 +28,36 @@ describe GadgetsController do
       it { should render_template :new }
       it 'dont creates gadget' do
         expect { subject }.to_not change { user.gadgets.count }
+      end
+    end
+  end
+
+  describe 'GET #edit' do
+    before { get :edit, id: iphone.id }
+    it { should render_template :edit }
+    it { should respond_with :success }
+  end
+
+  describe 'PATCH #update' do
+    context 'with valid attributes' do
+      subject { patch :update, id: iphone, gadget: { name: 'iPad' } }
+      it { should redirect_to gadgets_path }
+      it "changes gadget's name" do
+        expect {
+          subject
+          iphone.reload
+        }.to change(iphone, :name).to 'iPad'
+      end
+    end
+
+    context 'with invalid attributes' do
+      subject { patch :update, id: iphone, gadget: { name: '' } }
+      it { should render_template :edit }
+      it 'dont updates gadget' do
+        expect {
+          subject
+          iphone.reload
+        }.to_not change(iphone, :name)
       end
     end
   end
