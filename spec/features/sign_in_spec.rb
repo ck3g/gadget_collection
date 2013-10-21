@@ -11,5 +11,6 @@ feature 'Sign in', %q{
     sign_in_as 'user@example.com', 'password'
 
     expect(page).to have_content 'Signed in successfully'
+    expect(page).to have_content 'user@example.com'
   end
 end

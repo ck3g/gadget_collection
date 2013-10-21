@@ -1,0 +1,16 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Gadget Collection', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.pull-right
+        - if user_signed_in?
+          %li= link_to current_user.email, '#'
+          %li= link_to 'Sign out', destroy_user_session_path
+        - else
+          = nav_link_to 'Sign in', new_user_session_path
+          = nav_link_to 'Sign up', new_user_registration_path

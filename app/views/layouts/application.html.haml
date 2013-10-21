@@ -2,13 +2,18 @@
 %html
   %head
     %title GadgetCollection
+    %meta{charset: 'utf-8'}
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %div
-      = link_to 'Sign out', destroy_user_session_path
-    .flashes
-      - flash.each do |type, message|
-        = message
-    = yield
+    = render 'shared/top_nav_bar'
+
+    .container
+      .flashes
+        - flash.each do |type, message|
+          .alert.fade.in{:"data-dismiss" => "alert", class: "alert-#{flash_class(type)}"}
+            %button.close ×
+            = message
+      = yield
