@@ -1,4 +1,5 @@
 #gadgets
   - @gadgets.each do |gadget|
     %div
-      = gadget.name
+      = image_tag gadget.image.url(:small_thumb)
+      = link_to gadget.name, gadget

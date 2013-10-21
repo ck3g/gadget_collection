@@ -55,5 +55,17 @@ feature 'Manage gadgets' do
         expect(page).to have_content 'iPhone 5'
       end
     end
+
+    scenario 'user can navigate to gadget page from list' do
+      sign_in_as 'user@example.com', 'password'
+
+      visit gadgets_path
+
+      within '#gadgets' do
+        click_link 'iPhone'
+      end
+
+      expect(current_path).to eq gadget_path(iphone)
+    end
   end
 end
