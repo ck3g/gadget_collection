@@ -10,6 +10,8 @@ gem 'haml-rails'
 gem 'anjlab-bootstrap-rails', '~> 3.0.0.3', :require => 'bootstrap-rails'
 gem "simple_form", '~> 3.0.0'
 gem 'cancan'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

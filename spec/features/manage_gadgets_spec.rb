@@ -10,6 +10,7 @@ feature 'Manage gadgets' do
 
     within '#new_gadget' do
       fill_in 'gadget_name', with: 'iPhone'
+      attach_file 'gadget_image', "#{ Rails.root }/spec/fixtures/iphone.png"
       click_button 'Create'
     end
 
