@@ -2,7 +2,7 @@ class GadgetsController < ApplicationController
   authorize_resource
 
   def index
-    @gadgets = Gadget.order(created_at: :desc)
+    @gadgets = current_user.gadgets.order(created_at: :desc)
   end
 
   def new

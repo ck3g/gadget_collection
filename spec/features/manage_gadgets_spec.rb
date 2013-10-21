@@ -21,12 +21,22 @@ feature 'Manage gadgets' do
 
   context 'when gadges already exists' do
     given!(:gadget) { create :gadget, name: 'iPad' }
+    given!(:my_gadget) { create :gadget, name: 'iPhone', user: user }
 
     scenario 'Guest cannot see someone gadgets' do
       visit '/gadgets'
 
       expect(page).to_not have_content 'iPad'
       expect(page).to have_content 'You are not authorized to access this page'
+    end
+
+    scenario 'User be able to see only self gadgets' do
+      sign_in_as 'user@example.com', 'password'
+
+      visit '/gadgets'
+
+      expect(page).to have_content 'iPhone'
+      expect(page).to_not have_content 'iPad'
     end
   end
 end
