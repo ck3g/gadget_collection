@@ -1,4 +1,6 @@
 class GadgetsController < ApplicationController
+  authorize_resource
+
   def index
     @gadgets = Gadget.order(created_at: :desc)
   end
